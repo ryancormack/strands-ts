@@ -1,3 +1,11 @@
+** DO NOT BLINDLY USE THIS. IT IS AN EXPERIMENT TO SEE WHAT IS POSSIBLE**
+
+This Typescript implementation is an AI generated migration of the Python SDK to TypeScript, using the same architecture and design principles. It is not a direct translation but rather a reimagining of the SDK in TypeScript, leveraging its features and idioms.
+
+It MUST NOT be taken as a Typescript SDK. The code has not been reviewed, but it has been tested and seems to work as is. Dot NOT paste any secrets or sensitive information in here.
+
+
+
 # Strands Agent SDK - TypeScript
 
 A TypeScript SDK for building AI agents with a model-driven approach, migrated from the Python SDK.
