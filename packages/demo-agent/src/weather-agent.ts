@@ -94,7 +94,6 @@ Type /exit to quit
       region: process.env.AWS_REGION || 'us-west-2',
     }),
     tools: [getWeather, compareWeather],
-    includeBuiltinTools: true, // Also include date/time tools
     systemPrompt: `You are a weather assistant. You can provide weather information for major cities.
 Use the get_weather tool to check weather for a single city.
 Use the compare_weather tool when users ask about weather in multiple cities.
