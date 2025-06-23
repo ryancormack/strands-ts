@@ -1,0 +1,37 @@
+{
+  "name": "@strands/demo-agent",
+  "version": "0.1.0",
+  "description": "Demo agent showcasing Strands Agent SDK capabilities",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "predev": "pnpm --filter @strands/agent-sdk build && pnpm --filter @strands/tools build",
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "assistant": "tsx src/assistant.ts",
+    "weather": "tsx src/weather-agent.ts",
+    "calculator": "tsx src/calculator-agent.ts",
+    "tools": "tsx src/tools-demo.ts",
+    "mcp-test": "tsx src/mcp-test.ts",
+    "mcp-demo": "tsx src/mcp-demo.ts",
+    "mcp": "tsx src/mcp-interactive.ts",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@strands/agent-sdk": "workspace:*",
+    "@strands/tools": "workspace:*",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
+}

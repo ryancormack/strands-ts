@@ -1,0 +1,43 @@
+{
+  "name": "@strands/tools",
+  "version": "0.1.0",
+  "description": "Built-in tools for Strands Agent SDK",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "strands",
+    "agent",
+    "tools",
+    "ai",
+    "llm"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@strands/agent-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@strands/agent-sdk": "workspace:*",
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2",
+    "vitest": "^1.4.0"
+  }
+}

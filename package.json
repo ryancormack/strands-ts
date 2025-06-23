@@ -1,0 +1,28 @@
+{
+  "name": "@strands/workspace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Strands Agent SDK Workspace",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:sdk": "pnpm --filter @strands/agent-sdk build",
+    "build:tools": "pnpm --filter @strands/tools build",
+    "build:demo": "pnpm --filter @strands/demo-agent build",
+    "dev:sdk": "pnpm --filter @strands/agent-sdk dev",
+    "dev:demo": "pnpm --filter @strands/demo-agent dev",
+    "demo": "pnpm --filter @strands/demo-agent dev",
+    "repl": "pnpm --filter @strands/agent-sdk repl",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
+}
