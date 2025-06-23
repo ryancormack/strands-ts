@@ -5,6 +5,14 @@ This Typescript implementation is an AI generated migration of the Python SDK to
 It MUST NOT be taken as a Typescript SDK. The code has not been reviewed, but it has been tested and seems to work as is. Dot NOT paste any secrets or sensitive information in here.
 
 
+# Read Me before all else.
+
+This bit was written by me. The [Strands SDK](https://github.com/strands-agents/sdk-python) is an open source Python SDK for building AI agents. It supports a load of Model Providers, including Bedrock, VertexAI, Ollama and more. It has some built in tools for doing things, allows you to integrate MCP servers into those Agents and has a REPL interface for interacting with the agents.
+
+I'm by no means fluent in Python. I can read it, but I don't know the idioms or best practices. So I thought it would be fun to see if an AI could generate a TypeScript version of the SDK, using the same architecture and design principles. Over a couple of hours I coaxed Claude Code using Opus to generate a Typescript version of the SDK, using the same architecture and design principles. The result is a TypeScript SDK that is essentially an AI generated Typescript clone. It shouldn't be used. But I wanted to see how far you could get an AI to translate a whole load of code. I've not reviewed the code and 100% recommend you don't use the code. But I've used it and it runs. It loads MCP servers, it runs the agent. It's missing a load of features that make Strands great though. You should 100% go and check Strands out. It's great, so a huge thanks to the Strands team, and I'll continue my adventure learning Python, because I am running Strands Agents in Production and it's great..
+
+Now, back to the AI generated code...
+
 
 # Strands Agent SDK - TypeScript
 
