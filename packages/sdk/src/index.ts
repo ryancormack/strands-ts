@@ -23,6 +23,12 @@ export * from './types/eventLoop.js';
 export { ToolRegistry } from './tools/registry.js';
 export { AgentTool } from './types/tools.js';
 export { FunctionTool, tool } from './tools/functionTool.js';
+export { 
+  agentAsTool, 
+  statefulAgentAsTool, 
+  createAgentTools,
+  type AgentAsToolConfig 
+} from './tools/agentAsTool.js';
 
 // Note: Built-in tools are now in the @strands/tools package
 

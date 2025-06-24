@@ -21,6 +21,7 @@
     "mcp-test": "tsx src/mcp-test.ts",
     "mcp-demo": "tsx src/mcp-demo.ts",
     "mcp": "tsx src/mcp-interactive.ts",
+    "multi-agent": "tsx src/multi-agent-demo.ts",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },

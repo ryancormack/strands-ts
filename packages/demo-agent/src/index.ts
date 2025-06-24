@@ -63,6 +63,12 @@ const demos = [
     description: 'Interactive REPL with MCP server tools',
     script: 'mcp-interactive.ts',
     features: ['Choose MCP server', 'Interactive queries', 'Tool exploration', 'Real-time file operations']
+  },
+  {
+    name: 'Multi-Agent Orchestration',
+    description: 'Demonstrates agents working together as tools',
+    script: 'multi-agent-demo.ts',
+    features: ['Agent hierarchies', 'Specialized agents', 'Task delegation', 'Stateful agents', 'Complex workflows']
   }
 ];
 
