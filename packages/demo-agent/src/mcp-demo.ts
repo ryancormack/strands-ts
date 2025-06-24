@@ -37,7 +37,7 @@ async function main() {
     const agent = new Agent({
       model: new BedrockModel({
         modelId: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
-        region: process.env.AWS_REGION || 'us-east-1'
+        region: process.env.AWS_REGION || 'us-west-2'
       }),
       tools: mcpTools,
       systemPrompt: 'You are a helpful assistant with file system access. Be concise in your responses.'

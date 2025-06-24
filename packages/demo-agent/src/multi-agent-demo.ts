@@ -45,8 +45,8 @@ ${colors.dim}Demonstrating agents working together as tools${colors.reset}
 
   // Create the base model configuration
   const modelConfig = {
-    modelId: 'anthropic.claude-3-sonnet-20240229-v1:0',
-    region: process.env.AWS_REGION || 'us-east-1'
+    modelId: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
+    region: process.env.AWS_REGION || 'us-west-2'
   };
 
   // 1. Create specialized agent tools

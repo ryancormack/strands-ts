@@ -98,8 +98,8 @@ ${colors.dim}This demo connects to an MCP filesystem server${colors.reset}
     // Create agent
     const agent = new Agent({
       model: new BedrockModel({
-        modelId: 'anthropic.claude-3-sonnet-20240229-v1:0',
-        region: process.env.AWS_REGION || 'us-east-1'
+        modelId: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
+        region: process.env.AWS_REGION || 'us-west-2'
       }),
       tools: tools,
       systemPrompt: 'You are a helpful assistant with access to MCP tools. Be concise and informative in your responses.'

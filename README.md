@@ -53,29 +53,60 @@ strands-ts/
    # Interactive demo menu
    pnpm demo
    
-   # Or specific demos
-   pnpm --filter @strands/demo-agent assistant
-   pnpm --filter @strands/demo-agent weather
-   pnpm --filter @strands/demo-agent calculator
+   # Or run specific demos directly
+   pnpm --filter @strands/demo-agent assistant      # Basic conversational assistant
+   pnpm --filter @strands/demo-agent weather        # Weather information agent
+   pnpm --filter @strands/demo-agent calculator     # Mathematical calculations
+   pnpm --filter @strands/demo-agent tools          # All built-in tools showcase
+   pnpm --filter @strands/demo-agent mcp            # MCP server integration
+   pnpm --filter @strands/demo-agent multi-agent    # Multi-agent orchestration
+   
+   # Interactive REPL
+   pnpm --filter @strands/agent-sdk repl
    ```
 
 ## Features
 
+### Core Features
 - ✅ **Event Loop Architecture** - Core agent loop with streaming support
-- ✅ **AWS Bedrock Integration** - Full support for Claude models
-- ✅ **Tool System** - Flexible tool creation with decorators
-- ✅ **Built-in Tools Package** - Optional tools for common tasks
-- ✅ **REPL Interface** - Interactive command-line interface
+- ✅ **AWS Bedrock Integration** - Full support for Claude models via Converse API
+- ✅ **Tool System** - Flexible tool creation and registration
 - ✅ **TypeScript Support** - Full type safety and IDE support
-- 🚧 **MCP Support** - Model Context Protocol (coming soon)
+- ✅ **Conversation Management** - Sliding window and null conversation managers
+- ✅ **Error Handling** - Proper error types and recovery mechanisms
+- ✅ **Streaming Support** - Real-time streaming responses from models
+
+### Tools & Integration
+- ✅ **Built-in Tools Package** - Date/time, calculator, HTTP requests, web search
+- ✅ **MCP Support** - Full Model Context Protocol integration
+  - Stdio transport for local MCP servers
+  - SSE transport for remote MCP servers
+  - Automatic tool discovery and integration
+- ✅ **Agents as Tools** - Use agents as tools within other agents
+  - Hierarchical multi-agent systems
+  - Stateful and stateless agent tools
+  - Agent orchestration patterns
+
+### User Interface
+- ✅ **REPL Interface** - Interactive command-line interface with:
+  - Syntax highlighting
+  - Command history
+  - Built-in commands (.help, .exit, .model, .tools, etc.)
+  - Session management
+- ✅ **Demo Applications** - Multiple example implementations:
+  - Basic assistant with conversation
+  - Weather agent with custom tools
+  - Calculator agent
+  - MCP integration demos
+  - Multi-agent orchestration demo
 
 ## SDK Usage
 
+### Basic Agent
 ```typescript
-import { Agent, BedrockModel, tool } from '@strands/agent-sdk';
+import { Agent, BedrockModel } from '@strands/agent-sdk';
 import { calculator, currentDate } from '@strands/tools';
 
-// Create an agent with specific tools
 const agent = new Agent({
   model: new BedrockModel({
     modelId: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0'
@@ -84,26 +115,64 @@ const agent = new Agent({
   systemPrompt: 'You are a helpful assistant.'
 });
 
-// Use the tools
 const response = await agent.call("What is today's date?");
+console.log(response.text);
+```
 
-// Create custom tools
+### Custom Tools
+```typescript
+import { tool } from '@strands/agent-sdk';
+
 const myTool = tool({
   name: 'my_tool',
   description: 'Does something useful',
   parameters: {
-    type: 'object',
-    properties: {
-      input: { type: 'string' }
-    }
+    input: { type: 'string', description: 'Input to process' }
+  },
+  handler: async ({ input }) => {
+    return `Processed: ${input}`;
   }
-}, async ({ input }) => {
-  return `Processed: ${input}`;
+});
+```
+
+### MCP Integration
+```typescript
+import { MCPClient, createStdioTransport } from '@strands/agent-sdk';
+
+// Connect to MCP server
+const mcpClient = new MCPClient(
+  createStdioTransport('npx', ['-y', '@modelcontextprotocol/server-filesystem'])
+);
+await mcpClient.start();
+
+// Use MCP tools with agent
+const tools = await mcpClient.listTools();
+const agent = new Agent({
+  model: new BedrockModel(),
+  tools: tools
+});
+```
+
+### Multi-Agent Systems
+```typescript
+import { agentAsTool } from '@strands/agent-sdk';
+
+// Create specialized agent as a tool
+const researchTool = agentAsTool({
+  name: 'researcher',
+  description: 'Researches topics',
+  agentFactory: () => new Agent({
+    model: new BedrockModel(),
+    systemPrompt: 'You are a research expert...',
+    tools: [searchWeb, httpRequest]
+  })
 });
 
-// Add custom tools
-const agentWithTools = new Agent({
-  tools: [myTool]
+// Orchestrator uses specialized agents
+const orchestrator = new Agent({
+  model: new BedrockModel(),
+  tools: [researchTool, writerTool],
+  systemPrompt: 'You coordinate specialized agents...'
 });
 ```
 
@@ -155,6 +224,36 @@ The SDK follows the same architecture as the Python version:
 - **Models**: Abstraction layer for different model providers (Bedrock, OpenAI, etc.)
 - **Tools**: System for extending agent capabilities with custom functions
 - **MCP**: Model Context Protocol support for tool integration
+
+## Not Yet Implemented
+
+The following features from the Python SDK are not yet implemented:
+
+### Model Providers
+- ❌ OpenAI models
+- ❌ Anthropic direct API
+- ❌ Ollama local models
+- ❌ LiteLLM universal interface
+- ❌ Vertex AI (Google)
+- ❌ Custom model providers
+
+### Advanced Features
+- ❌ A2A (Agent-to-Agent) HTTP protocol
+- ❌ Hot reloading of tools
+- ❌ Telemetry and observability (OpenTelemetry)
+- ❌ Structured output with Pydantic-like validation
+- ❌ Conversation persistence
+- ❌ Bedrock guardrails
+- ❌ Cache points for conversation optimization
+- ❌ Token counting and management
+- ❌ Summarizing conversation manager
+
+### Tools
+- ❌ SQL database tools
+- ❌ Vector database tools
+- ❌ Email tools
+- ❌ Slack integration
+- ❌ File system tools (available via MCP)
 
 ## Progress
 
