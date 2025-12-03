@@ -1,6 +1,5 @@
-* Use the real one*
-
-* https://github.com/strands-agents/sdk-typescript
+**Use the real one**
+https://github.com/strands-agents/sdk-typescript
 
 ** DO NOT BLINDLY USE THIS. IT IS AN EXPERIMENT TO SEE WHAT IS POSSIBLE**
 
